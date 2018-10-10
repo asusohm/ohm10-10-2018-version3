@@ -1,0 +1,116 @@
+<mat-toolbar style="background-color: #1C93ED;">
+  <span>
+    <img src="../../assets/img/logo.png" style="padding-left:2vh;" width="100" height="30">
+  </span>
+
+  <span class="fill-remaining-space"></span>
+  <button mat-button>Manager Trrasury</button>
+  <button mat-button>Menu 02</button>
+  <button mat-button (click)="logout()">Logout</button>
+
+</mat-toolbar>
+
+<body>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="50px">
+        <mat-grid-tile>
+          <label style="text-align: left;" for="">Employee's name</label>
+          <span class="fill-remaining-space"></span>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label for="">{{employeeName}}</label><span class="fill-remaining-space"></span>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label for="">Position</label><span class="fill-remaining-space"></span>
+        </mat-grid-tile>
+        <mat-grid-tile>
+
+          <label for="">{{position}}</label><span class="fill-remaining-space"></span>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label for="">Service Center</label><span class="fill-remaining-space"></span>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label for="">{{serviceCenterName}}</label><span class="fill-remaining-space"></span>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let expansion of expansions">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{expansion.currency.currencyCode}}
+            </mat-panel-title>
+
+            <mat-panel-description>
+
+              {{expansion.balance.balanceAmount}}
+            </mat-panel-description>
+
+
+          </mat-expansion-panel-header>
+          <mat-grid-list cols="4" rowHeight="100px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+
+              <mat-form-field>
+                <mat-select placeholder="Select Transaction">
+                  <mat-option *ngFor="let transactionSelect of transactionSelects" [value]="transactionSelect">
+                    {{transactionSelect}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+              <mat-form-field style="width: 100%">
+                <input matInput type="number" placeholder="Amount">
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <button mat-flat-button color="warn" style="background-color:#10151B;" (click)="putBalance()">confirm</button>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+
+    </mat-card-content>
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field style="width: 95%;">
+          <mat-select [(ngModel)]="currencySelect" placeholder="Select Currency">
+            <mat-option *ngFor="let currency of currencys" [value]="currency.currencyCode">
+              {{currency.currencyCode}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-form-field style="width: 95%;">
+          <input matInput [(ngModel)]="balanceInput" placeholder="Balance" value="">
+        </mat-form-field>
+      </mat-grid-tile >
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+          
+          <button mat-flat-button color="primary" (click)="addCurrency()" style="background-color:#4CAF50;">Add</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+    
+   
+
+  </mat-card>
+
+
+</body>

@@ -1,0 +1,17 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+mat-card {
+    
+    max-width: 30%;
+    margin: auto auto;
+    text-align: center;
+   
+}
+.signin-content {
+    padding: 20vh 1rem ;
+}
+.full-width-input {
+    width: 100%;
+}
